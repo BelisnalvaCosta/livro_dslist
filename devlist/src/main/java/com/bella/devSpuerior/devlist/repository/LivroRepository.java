@@ -1,8 +1,11 @@
 package com.bella.devSpuerior.devlist.repository;
 
 import com.bella.devSpuerior.devlist.entities.Livro;
+import com.bella.devSpuerior.devlist.projections.LivroMinProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface LivroRepository extends JpaRepository<Livro, Long> {
     @Query(nativeQuery = true, value = """
@@ -13,7 +16,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 			WHERE tb_belonging.list_id = :listId
 			ORDER BY tb_belonging.position
 				""")
-    List<LivroMinProjection> searchByList(Long listId);
+	List<LivroMinProjection> searchByList(Long listId);
 }
 
 
